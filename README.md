@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Qoomlee Airline - Booking & Check-in Flow
 
-## Getting Started
+This is a Next.js project that simulates an airline's booking and online check-in flow, complete with mock APIs and UI components.
 
-First, run the development server:
+## 🚀 Getting Started
 
+First, install the dependencies if you haven't already:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, run the frontend development server:
+```bash
+bun run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the application. 
+Navigate to the **Check-in** tab in the navigation bar to access the testable flow.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Running UI Tests
 
-## Learn More
+This project uses **Vitest** and **React Testing Library** to test the UI components. 
 
-To learn more about Next.js, take a look at the following resources:
+To run the test suite:
+```bash
+bun test
+```
+*(Tests are located in `src/app/Checkin/page.test.tsx` and ensure that button states and form logic function correctly).*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔐 Mock Login Credentials (For Testing)
 
-## Deploy on Vercel
+The Check-in flow uses a mocked API backend. To test the check-in functionality, use the following details on the `/Checkin` page:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✅ 1. Successful Login (Standard Booking)
+Use this credential to successfully retrieve a booking and proceed through the check-in flow (Select Passengers, add Info, agree to Dangerous Goods, and view Boarding Pass).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Last Name:** `HUUM` (or `KUUM`)
+- **Booking Reference (PNR):** `ABC123`
+
+### ❌ 2. Failed Login (Group Booking Restriction)
+Use this credential to trigger a simulated error showing that group bookings are not allowed to check-in online.
+
+- **Last Name:** `SMITH`
+- **Booking Reference (PNR):** `GRP999`
+
+### ⚠️ 3. Invalid Login (Not Found)
+Use any other random combination (e.g., Last Name: `Doe`, PNR: `XXX999`) to see the "PNR Not Found" or validation error messages.
