@@ -7,7 +7,7 @@ import { ChevronDown, Loader2 } from "lucide-react";
 import StickyBottomBar from "@/components/StickyBottomBar";
 import { CheckinState, Passenger } from "@/lib/types";
 
-export default function PaxInfoPage() {
+const PaxInfoPage = () => {
     const router = useRouter();
     const [session, setSession] = useState<CheckinState | null>(null);
     const [selectedPassengers, setSelectedPassengers] = useState<Passenger[]>([]);
@@ -132,3 +132,5 @@ export default function PaxInfoPage() {
         </div>
     );
 }
+
+export default PaxInfoPage;

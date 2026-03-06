@@ -1,6 +1,5 @@
 import React from "react";
-
-interface StickyBottomBarProps {
+import Button from "./Button"; interface StickyBottomBarProps {
     onBack?: () => void;
     onContinue?: () => void;
     backText?: string;
@@ -10,7 +9,7 @@ interface StickyBottomBarProps {
     hideBack?: boolean;
 }
 
-export default function StickyBottomBar({
+const StickyBottomBar = ({
     onBack,
     onContinue,
     backText = "Back",
@@ -18,29 +17,32 @@ export default function StickyBottomBar({
     isContinueDisabled = false,
     isContinueLoading = false,
     hideBack = false,
-}: StickyBottomBarProps) {
+}: StickyBottomBarProps) => {
     return (
         <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:px-8 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
             <div className="max-w-5xl mx-auto w-full flex flex-col md:flex-row gap-4">
                 {!hideBack && (
-                    <button
+                    <Button
+                        variant="secondary"
                         onClick={onBack}
-                        className="w-full md:w-1/2 py-4 px-6 rounded-lg font-bold text-gray-900 bg-white border-2 border-slate-200 hover:bg-slate-50 transition-colors"
+                        className="w-full md:w-1/2"
                     >
                         {backText}
-                    </button>
+                    </Button>
                 )}
-                <button
+                <Button
+                    variant="primary"
                     onClick={onContinue}
-                    disabled={isContinueDisabled || isContinueLoading}
-                    className={`w-full ${hideBack ? "" : "md:w-1/2"} py-4 px-6 rounded-lg font-bold text-white transition-all transform ${isContinueDisabled || isContinueLoading
-                            ? "bg-[#8BCDEA] cursor-not-allowed"
-                            : "bg-[#0AA6E8] hover:bg-[#088bc2] shadow-md active:scale-[0.99]"
-                        }`}
+                    disabled={isContinueDisabled}
+                    isLoading={isContinueLoading}
+                    loadingText="Processing..."
+                    className={`w-full ${hideBack ? "" : "md:w-1/2"}`}
                 >
-                    {isContinueLoading ? "Processing..." : continueText}
-                </button>
+                    {continueText}
+                </Button>
             </div>
         </div>
     );
 }
+
+export default StickyBottomBar;

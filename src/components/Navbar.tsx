@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Plane } from "lucide-react";
 
-export default function Navbar() {
+const Navbar = () => {
     return (
         <nav className="flex items-center justify-between px-6 py-4 bg-white md:px-12 lg:px-24 border-b border-gray-100">
             <div className="flex items-center space-x-2">
@@ -22,3 +22,5 @@ export default function Navbar() {
         </nav>
     );
 }
+
+export default Navbar;

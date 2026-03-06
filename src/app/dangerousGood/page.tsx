@@ -4,8 +4,9 @@ import WizardHeader from "@/components/WizardHeader";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import StickyBottomBar from "@/components/StickyBottomBar";
+import Button from "@/components/Button";
 
-export default function DangerousGoodPage() {
+const DangerousGoodPage = () => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
@@ -119,22 +120,23 @@ export default function DangerousGoodPage() {
                 */}
                 <div className="border-t border-gray-200 p-4 md:px-8 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] bg-white relative">
                     <div className="max-w-5xl mx-auto w-full flex flex-col md:flex-row gap-4">
-                        <button
+                        <Button
+                            variant="secondary"
                             onClick={() => router.back()}
-                            className="w-full md:w-1/2 py-4 px-6 rounded-lg font-bold text-gray-900 bg-white border-2 border-slate-200 hover:bg-slate-50 transition-colors"
+                            className="w-full md:w-1/2"
                         >
                             Back
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant="primary"
                             onClick={handleComplete}
                             disabled={isLoading}
-                            className={`w-full md:w-1/2 py-4 px-6 rounded-lg font-bold text-white transition-all transform ${isLoading
-                                ? "bg-[#8BCDEA] cursor-not-allowed"
-                                : "bg-[#0AA6E8] hover:bg-[#088bc2] shadow-md active:scale-[0.99]"
-                                }`}
+                            isLoading={isLoading}
+                            loadingText="Processing..."
+                            className="w-full md:w-1/2"
                         >
-                            {isLoading ? "Processing..." : "Accept & Continue"}
-                        </button>
+                            Accept & Continue
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -142,3 +144,5 @@ export default function DangerousGoodPage() {
         </div>
     );
 }
+
+export default DangerousGoodPage;

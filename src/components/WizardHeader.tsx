@@ -8,7 +8,7 @@ interface WizardHeaderProps {
     totalSteps: number;
 }
 
-export default function WizardHeader({ title, subtitle, step, totalSteps }: WizardHeaderProps) {
+const WizardHeader = ({ title, subtitle, step, totalSteps }: WizardHeaderProps) => {
     const progressPercentage = (step / totalSteps) * 100;
 
     return (
@@ -38,3 +38,5 @@ export default function WizardHeader({ title, subtitle, step, totalSteps }: Wiza
         </div>
     );
 }
+
+export default WizardHeader;

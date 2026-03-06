@@ -11,8 +11,9 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Button from "@/components/Button";
 
-export default function CheckinPage() {
+const CheckinPage = () => {
     const [lastName, setLastName] = useState("");
     const [pnr, setPnr] = useState("");
     const router = useRouter();
@@ -115,16 +116,15 @@ export default function CheckinPage() {
                                 </div>
                             )}
 
-                            <button
+                            <Button
                                 type="submit"
-                                disabled={!isFormValid || isLoading}
-                                className={`w-full py-4 px-6 rounded-lg font-bold text-lg transition-all ${isFormValid && !isLoading
-                                    ? "bg-[#0AA6E8] hover:bg-[#088bc2] text-white shadow-md hover:shadow-lg transform active:scale-[0.99]"
-                                    : "bg-[#8BCDEA] text-white cursor-not-allowed"
-                                    }`}
+                                disabled={!isFormValid}
+                                isLoading={isLoading}
+                                loadingText="Searching..."
+                                className="w-full text-lg"
                             >
-                                {isLoading ? "Searching..." : "Retrieve Booking"}
-                            </button>
+                                Retrieve Booking
+                            </Button>
                         </form>
 
                         <div className="mt-8 bg-blue-50/50 rounded-lg p-4 border border-blue-100">
@@ -234,3 +234,5 @@ export default function CheckinPage() {
         </div>
     );
 }
+
+export default CheckinPage;

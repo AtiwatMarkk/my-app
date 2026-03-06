@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CheckinState, Passenger } from "@/lib/types";
 import StickyBottomBar from "@/components/StickyBottomBar";
+import Button from "@/components/Button";
 
-export default function BoardingPassPage() {
+const BoardingPassPage = () => {
     const router = useRouter();
     const [selectedPassengers, setSelectedPassengers] = useState<Passenger[]>([]);
     const [pnr, setPnr] = useState<string>("");
@@ -161,7 +162,7 @@ export default function BoardingPassPage() {
 
                             {/* Apple Wallet Button */}
                             <div className="mt-8">
-                                <button className="w-full bg-black text-white rounded-lg py-4 flex items-center justify-center space-x-3 hover:bg-gray-900 transition-colors">
+                                <Button variant="black" className="w-full space-x-3">
                                     <svg viewBox="0 0 32 23" fill="none" className="w-8 h-6">
                                         <rect x="1" y="1" width="30" height="21" rx="3" fill="#FFEACB" />
                                         <rect x="1" y="1" width="30" height="21" rx="3" fill="white" fillOpacity="0.8" />
@@ -171,7 +172,7 @@ export default function BoardingPassPage() {
                                         <rect x="7" y="10" width="18" height="4" rx="2" fill="white" />
                                     </svg>
                                     <span className="font-bold">Add to Apple Wallet</span>
-                                </button>
+                                </Button>
                             </div>
                         </div>
 
@@ -189,3 +190,5 @@ export default function BoardingPassPage() {
         </div>
     );
 }
+
+export default BoardingPassPage;

@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckinState, Passenger } from "@/lib/types";
 import StickyBottomBar from "@/components/StickyBottomBar";
+import Button from "@/components/Button";
 
-export default function SelectPaxPage() {
+const SelectPaxPage = () => {
     const router = useRouter();
     const [session, setSession] = useState<CheckinState | null>(null);
     const [selectedPax, setSelectedPax] = useState<string[]>([]);
@@ -98,13 +99,14 @@ export default function SelectPaxPage() {
             {/* Floating Select All Button - matched to screenshot where it appears above the bottom bar */}
             {selectedPax.length < passengers.length && passengers.length > 0 && (
                 <div className="fixed bottom-24 right-4 md:right-auto md:left-1/2 md:translate-x-[260px] z-40">
-                    <button
+                    <Button
+                        variant="outline"
                         onClick={selectAll}
-                        className="bg-white border border-gray-200 shadow-md text-gray-700 px-5 py-2.5 rounded-full text-sm font-semibold flex items-center space-x-2 hover:bg-gray-50 transition-all"
+                        className="px-5 py-2.5 text-sm space-x-2"
                     >
                         <Check className="w-4 h-4 text-gray-500" />
                         <span>Select All</span>
-                    </button>
+                    </Button>
                 </div>
             )}
 
@@ -124,3 +126,5 @@ export default function SelectPaxPage() {
         </div>
     );
 }
+
+export default SelectPaxPage;
